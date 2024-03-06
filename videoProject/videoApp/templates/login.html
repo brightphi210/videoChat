@@ -1,0 +1,44 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="logDiv">
+
+    <form action="{% url 'login' %}" method="POST">
+        <div>
+            <a href="{% url 'home' %}"><img src="{% static 'logo.png' %}" alt="" width="150" style="display: flex; margin: auto; margin-bottom: 30px;"></a>
+        </div>
+
+
+        {% csrf_token %}
+        <input type="text" placeholder="Enter your email" name="email">
+        <input type="password" placeholder="Enter your password" name="password">
+        <input type="submit" class="button" value="Login">
+        <div>
+            {% if success %}
+            <p style="color: rgb(216, 99, 255); padding: 20px 0; font-size: 20px; font-weight: 300;"><b>{{ success }}</b></p>
+            {% endif %}
+            {% if error %}
+            <p style="color: rgb(236, 181, 181); padding: 20px 0; font-size: 20px; font-weight: 300;">{{ error }}</p>
+            {% endif %}
+          </div>
+          <p style="color: rgb(207, 207, 207); font-size: 15px;">Don't Account <a href="{% url 'register' %}" style="text-decoration: none;"><span style="color: #de96f3; cursor: pointer;">Register</span></a></p>
+      </form>
+
+    </div>
+
+</body>
+</html>
+
+
